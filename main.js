@@ -31,7 +31,9 @@ function lift(){
     for(let i=0; employee[i].id != confirmEmployee &&  i<dimension;i++){ // busca si el empleado existe en el array
       cont++;
     } 
-
+    
+    alert("el contador vale " +cont");
+          
     if(cont<3){ // si existe, no se pasa de 3 ya que es la dimension del array
         alert("Bienvenido/a " +employee[cont].name+" a nuestro ascensor!");
         let wantedfloor= parseInt(prompt("Ingrese al piso que quiera ir")); 
