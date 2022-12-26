@@ -1,9 +1,6 @@
 let passenger= 1;
 let actualfloor=0;
 let floorcount=0;
-let confirmEmployee=0;
-let dimension =3;
-let cont=0;
 
 const employee = [
     {id : 4536,
@@ -26,16 +23,16 @@ const employee = [
 // a futuro se le podria agregar limite de pisos a los que pueda ir y la cant de personas que pueda llevar
 
 function lift(){
-    confirmEmployee=parseInt(prompt("ingrese numero de empleado"));
-
-    for(let i=0; employee[i].id != confirmEmployee &&  i<dimension;i++){ // busca si el empleado existe en el array
-      cont++;
-    } 
+        let confirmEmployee=parseInt(prompt("ingrese numero de empleado"));
     
-    alert("el contador vale " +cont");
-          
-    if(cont<3){ // si existe, no se pasa de 3 ya que es la dimension del array
-        alert("Bienvenido/a " +employee[cont].name+" a nuestro ascensor!");
+    const find = employee.find(element =>{
+        return element.id === confirmEmployee;
+    });
+
+    
+    if(find!=undefined){
+
+        alert("Bienvenido/a " +find.name+" a nuestro ascensor!");
         let wantedfloor= parseInt(prompt("Ingrese al piso que quiera ir")); 
     
         while(passenger == 1){ // verifica que el pasajero siga en el ascensor
@@ -63,14 +60,15 @@ function lift(){
             if(passenger == 1){
                 wantedfloor= parseInt(prompt("Ingrese al piso que quiera ir")); // si quiere seguir, ingresa un piso nuevo
             }else{
-                alert("Gracias por usar nuestros servicios. La cantidad de pisos recorridos fueron " + floorcount); // si no, agradece y anuncia la cantidad de pisos recorridos.
+                alert("Gracias por usar nuestros servicios "+find.name+"! La cantidad de pisos recorridos fueron " + floorcount); // si no, agradece y anuncia la cantidad de pisos recorridos.
             }
         }
     }else{
         alert("Este empleado no es válido");
     }
-    
     return floorcount;
 }
+    
+
 
 console.log(lift());
